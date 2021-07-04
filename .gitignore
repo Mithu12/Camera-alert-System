@@ -25,3 +25,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/.idea/Camera-alert-System.iml
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/vcs.xml
+.idea
