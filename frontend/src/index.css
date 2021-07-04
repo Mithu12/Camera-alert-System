@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.active{
+  border: 13px solid #DA0037;
+}
+
+.main-container > * {
+  margin-right: 15px;
+}
+
+.ctext {
+  color: white;
+}
+
+.camera {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center;
+  background-color: #171717;
+  text-align: center;
+}
