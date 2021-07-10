@@ -62,9 +62,12 @@ const CameraDetect = (props) => {
                 if (device.kind === 'videoinput') {
                     console.log(device.deviceId)
                     navigator.mediaDevices.getUserMedia({
-                        video: true,
+                        video: {
+                            deviceId: {
+                                exact: device.deviceId
+                            }
+                        },
                         audio: true,
-                        deviceId: { exact: device.deviceId }
                     }).then(stream => {
                         console.log(stream)
                         // video1.sinkId = device.deviceId
