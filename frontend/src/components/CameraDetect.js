@@ -1,9 +1,15 @@
 
 import io from "socket.io-client";
 
-import {useEffect, useState} from "react";
+import {createRef, useEffect, useState} from "react";
 
 const CameraDetect = (props) => {
+
+
+    const video = createRef();
+    const video1 = createRef();
+    const video2 = createRef();
+
 
     const socket = io("http://localhost:5000")
 
@@ -20,6 +26,107 @@ const CameraDetect = (props) => {
     const yoyo = () => {
         setCameraId(cameraId+1)
     }
+
+
+
+
+
+    // useEffect(() => {
+    //
+    //     navigator.mediaDevices.enumerateDevices().then(devices => {
+    //         devices.map(device => {
+    //             if (device.kind === 'videoinput') {
+    //                 setCameras([...cameras, device.deviceId])
+    //             }
+    //         })
+    //
+    //     })
+    //
+    // }, []);
+
+    // console.log(cameras)
+
+
+    useEffect(() => {
+        let currentNumber = 1
+        // navigator.mediaDevices.enumerateDevices().then(devices => {
+        //     console.log(devices)
+        //     devices.map((device, index) => {
+        //                 if (device.kind === 'videoinput') {
+        //                     console.log(device)
+        //                 }
+        //     })
+        // })
+        navigator.mediaDevices.enumerateDevices().then(devices => {
+            devices.map((device, index) => {
+                if (device.kind === 'videoinput') {
+                    console.log(device.deviceId)
+                    navigator.mediaDevices.getUserMedia({
+                        video: true,
+                        audio: true,
+                        deviceId: { exact: device.deviceId }
+                    }).then(stream => {
+                        console.log(stream)
+                        // video1.sinkId = device.deviceId
+                        let v = (currentNumber === 1 ? video : (currentNumber === 2 ? video1 : video2))
+                        // const v = video
+                        currentNumber++;
+                        console.log(v)
+                        v.current.srcObject = stream;
+                        v.current.defaultMuted = true;
+                        v.current.muted = true;
+                        v.current.onloadedmetadata = function (e) {
+                            v.current.play();
+                        }
+
+                    }).catch(e => {
+                        console.log(e)
+                    })
+                }
+            })
+
+        }).catch(e=>{
+            console.log(e)
+        })
+        // navigator.mediaDevices.getUserMedia({
+        //     video: true,
+        //     audio: true
+        // }).then(stream => {
+        //     console.log(stream)
+        //     // addVideo(myVideo, stream)
+        //     // myVideo?.current?.srcObject = (stream)
+        //     // myVideo?.current?.addEventListener('loadedmetadata', ()=>{
+        //     //     myVideo?.current.play()
+        //     // })
+        //     video.current.srcObject = stream;
+        //     video.current.defaultMuted = true;
+        //     video.current.muted = true;
+        //     video.current.onloadedmetadata = function (e) {
+        //         video.current.play();
+        //     };
+        //
+        //
+        //     // video1.current.srcObject = stream;
+        //     // video1.current.defaultMuted  = true;
+        //     // video1.current.muted = true;
+        //     // video1.current.onloadedmetadata = function(e) {
+        //     //     video1.current.play();
+        //     // }
+        //
+        //     // videoGrid.append(myVideo)
+        // })
+    }, [])
+
+
+
+
+
+
+
+
+
+
+
     // const style = {
     //     width:'200px',
     //     height:'200px',
@@ -57,9 +164,23 @@ const CameraDetect = (props) => {
            <div className={cameraId ===4 ?"camera active" :  "camera"}>
                 <h2 className="ctext">Camera 4</h2>
            </div>
+
+
+            <video ref={video} width={'300px'} autoPlay ></video>
+
+            <video ref={video1}  width={'300px'} autoPlay ></video>
+
+            <video ref={video2}  width={'300px'} autoPlay ></video>
+
+
+
+
+
             {/* <button onClick={yoyo}>click</button> */}
         </div>
     )
 };
 
 export default CameraDetect;
+
+

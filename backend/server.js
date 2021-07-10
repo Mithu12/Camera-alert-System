@@ -1,7 +1,7 @@
 const express = require("express");
-const path =require("path");
+const path = require("path");
 
-dotenv.config()
+// dotenv.config()
 
 const cors = require('cors')
 
@@ -40,15 +40,11 @@ io.on("connection", socket => {
       console.log(cameraId)
       socket.to('camera room').emit('received',{message:cameraId})
     })
-  
-  
-  
-    
-  
+
     socket.on("disconnect", () =>console.log("Disconnected"));
   });
 
-const __dirname = path.resolve()
+// const __dirname = path.resolve()
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build')))
     app.get('*', (req, res) => {
