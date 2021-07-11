@@ -130,13 +130,7 @@ const CameraDetect = (props) => {
 
 
 
-    // const style = {
-    //     width:'200px',
-    //     height:'200px',
-    //     background: 'black',
-    //     float: 'left',
-    //     margin: '20px'
-    // }
+    const style = {border: '5px solid red'}
 
     // const style2 = {
     //     width:'200px',
@@ -155,25 +149,25 @@ const CameraDetect = (props) => {
             <div style={cameraId !== 3 ? style : style2}>a3</div>
             <div style={cameraId !== 4 ? style : style2}>4</div>
             <button onClick={yoyo}>click</button> */}
-           <div className={cameraId ===1 ?"camera active" :  "camera"}>
-                <h2 className="ctext">Camera 1</h2>
-           </div>
-           <div className={cameraId ===2 ?"camera active" :  "camera"}>
-                <h2 className="ctext">Camera 2</h2>
-           </div>
-           <div className={cameraId ===3 ?"camera active" :  "camera"}>
-                <h2 className="ctext">Camera 3</h2>
-           </div>
-           <div className={cameraId ===4 ?"camera active" :  "camera"}>
-                <h2 className="ctext">Camera 4</h2>
-           </div>
+           {/*<div className={cameraId ===1 ?"camera active" :  "camera"}>*/}
+           {/*     <h2 className="ctext">Camera 1</h2>*/}
+           {/*</div>*/}
+           {/*<div className={cameraId ===2 ?"camera active" :  "camera"}>*/}
+           {/*     <h2 className="ctext">Camera 2</h2>*/}
+           {/*</div>*/}
+           {/*<div className={cameraId ===3 ?"camera active" :  "camera"}>*/}
+           {/*     <h2 className="ctext">Camera 3</h2>*/}
+           {/*</div>*/}
+           {/*<div className={cameraId ===4 ?"camera active" :  "camera"}>*/}
+           {/*     <h2 className="ctext">Camera 4</h2>*/}
+           {/*</div>*/}
 
 
-            <video ref={video} width={'300px'} autoPlay ></video>
+            <video ref={video1} width={'300px'} autoPlay style={ cameraId === 1 ? style : {} }></video>
 
-            <video ref={video1}  width={'300px'} autoPlay ></video>
+            <video ref={video}  width={'300px'} autoPlay style={ cameraId === 2 ? style : {} }></video>
 
-            <video ref={video2}  width={'300px'} autoPlay ></video>
+            <video ref={video2}  width={'300px'} autoPlay style={ cameraId === 3 ? style : {} }></video>
 
 
 
